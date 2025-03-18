@@ -60,7 +60,6 @@ const upload = multer({
 // 中间件
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions)); // 处理所有OPTIONS请求
-
 app.use(express.static("public"));
 app.use(express.json());
 
