@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>图片背景展示</title>
+    <style>
+      body {
+        margin: 0;
+        height: 100vh;
+        background-size: cover;
+        background-position: center;
+        transition: background-image 1s ease;
+      }
+      .upload-box {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 20px;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="upload-box">
+      <input type="file" id="uploadInput" accept="image/*" />
+      <button onclick="uploadImage()">上传图片</button>
+    </div>
+
+    <script>
+      // 初始化时获取随机背景
+      fetch("/images")
+        .then((res) => res.json())
+        .then((images) => {
+          if (images.length > 0) {
+            const randomImage =
+              images[Math.floor(Math.random() * images.length)];
+            document.body.style.backgroundImage = `url('${randomImage}')`;
+          }
+        });
+
+      // 上传功能
+      function uploadImage() {
+        const input = document.getElementById("uploadInput");
+        const file = input.files[0];
+
+        if (!file) return alert("请选择图片文件");
+
+        const formData = new FormData();
+        formData.append("image", file);
+
+        fetch("/upload", {
+          method: "POST",
+          body: formData,
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            alert(data.message);
+            location.reload(); // 刷新页面显示新图片
+          })
+          .catch((err) => alert("上传失败: " + err));
+      }
+    </script>
+  </body>
+</html>
