@@ -28,12 +28,7 @@
 
     <script>
       // 初始化时获取随机背景
-      fetch("http://ec2-43-199-70-185.ap-east-1.compute.amazonaws.com/images", {
-        mode: "cors", // 明确声明CORS模式
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+      fetch("http://ec2-43-199-70-185.ap-east-1.compute.amazonaws.com/images")
         .then((res) => res.json())
         .then((images) => {
           if (images.length > 0) {
