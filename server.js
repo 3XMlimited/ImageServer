@@ -7,6 +7,25 @@ const cors = require("cors");
 const app = express();
 const PORT = 5001;
 
+// 增强版CORS配置
+const allowedOrigins = [
+  "http://localhost:5001",
+  "http://ec2-43-199-70-185.ap-east-1.compute.amazonaws.com",
+];
+
+const corsOptions = {
+  origin: (origin, callback) => {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  methods: ["GET", "POST", "DELETE", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  maxAge: 86400, // 预检请求缓存时间（秒）
+};
+
 // 创建图片存储目录 （如果不存在）
 const uploadDir = path.join(__dirname, "public/images");
 if (!fs.existsSync(uploadDir)) {
@@ -39,7 +58,9 @@ const upload = multer({
 });
 
 // 中间件
-app.use(cors());
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // 处理所有OPTIONS请求
+
 app.use(express.static("public"));
 app.use(express.json());
 
