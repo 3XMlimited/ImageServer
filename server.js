@@ -55,6 +55,7 @@ const upload = multer({
   storage,
   fileFilter,
   limits: { fileSize: 5 * 1024 * 1024 }, //5MB限制
+  files: 1, //单次只允许1个文件
 });
 
 // 中间件
@@ -98,6 +99,17 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ error: err.message });
 });
+
+// 添加API密钥验证中间件
+// const apiKeys = new Set(process.env.API_KEYS.split(","));
+
+// app.use((req, res, next) => {
+//   const apiKey = req.headers["x-api-key"];
+//   if (!apiKeys.has(apiKey)) {
+//     return res.status(403).json({ error: "无效API密钥" });
+//   }
+//   next();
+// });
 
 // server
 app.listen(PORT, () => {

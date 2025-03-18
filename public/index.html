@@ -28,13 +28,13 @@
 
     <script>
       // 初始化时获取随机背景
-      fetch("http://ec2-43-199-70-185.ap-east-1.compute.amazonaws.com/images")
+      fetch("http://ec2-43-199-70-185.ap-east-1.compute.amazonaws.com/images/")
         .then((res) => res.json())
         .then((images) => {
           if (images.length > 0) {
             const randomImage =
               images[Math.floor(Math.random() * images.length)];
-            document.body.style.backgroundImage = `url('${randomImage}')`;
+            document.body.style.backgroundImage = `url('http://ec2-43-199-70-185.ap-east-1.compute.amazonaws.com/${randomImage}')`;
           }
         });
       //   if (!file) return alert("请选择图片文件");
