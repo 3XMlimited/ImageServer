@@ -2,7 +2,7 @@ const express = require("express");
 const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
-const exp = require("constants");
+const cors = require("cors");
 
 const app = express();
 const PORT = 5001;
@@ -39,6 +39,7 @@ const upload = multer({
 });
 
 // 中间件
+app.use(cors());
 app.use(express.static("public"));
 app.use(express.json());
 
@@ -70,6 +71,12 @@ app.delete("/images/:filename", (req, res) => {
     if (err) return res.status(400).send("Not found File");
     res.send("Deleted!");
   });
+});
+
+// 错误处理
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ error: err.message });
 });
 
 // server

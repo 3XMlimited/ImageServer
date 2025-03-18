@@ -28,7 +28,7 @@
 
     <script>
       // 初始化时获取随机背景
-      fetch("/images")
+      fetch("http://ec2-43-199-70-185.ap-east-1.compute.amazonaws.com/images")
         .then((res) => res.json())
         .then((images) => {
           if (images.length > 0) {
@@ -37,13 +37,11 @@
             document.body.style.backgroundImage = `url('${randomImage}')`;
           }
         });
-
+      //   if (!file) return alert("请选择图片文件");
       // 上传功能
       function uploadImage() {
         const input = document.getElementById("uploadInput");
         const file = input.files[0];
-
-        if (!file) return alert("请选择图片文件");
 
         const formData = new FormData();
         formData.append("image", file);
@@ -58,7 +56,7 @@
             alert(data.message);
             location.reload(); // 刷新页面显示新图片
           })
-          .catch((err) => alert("上传失败: " + err));
+          .catch((err) => alert("Failed: " + err));
       }
     </script>
   </body>
