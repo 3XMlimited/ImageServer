@@ -34,7 +34,7 @@
           if (images.length > 0) {
             const randomImage =
               images[Math.floor(Math.random() * images.length)];
-            document.body.style.backgroundImage = `url('http://ec2-43-199-70-185.ap-east-1.compute.amazonaws.com/${randomImage}')`;
+            document.body.style.backgroundImage = `url('https://ec2-43-199-70-185.ap-east-1.compute.amazonaws.com/${randomImage}')`;
           }
         });
       //   if (!file) return alert("请选择图片文件");
@@ -46,13 +46,10 @@
         const formData = new FormData();
         formData.append("image", file);
 
-        fetch(
-          "https://d7xmsqcex8.execute-api.ap-east-1.amazonaws.com/dev/upload",
-          {
-            method: "POST",
-            body: formData,
-          }
-        )
+        fetch("/upload", {
+          method: "POST",
+          body: formData,
+        })
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
