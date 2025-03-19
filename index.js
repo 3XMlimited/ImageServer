@@ -81,6 +81,7 @@ app.post("/upload", upload.single("image"), (req, res) => {
 
 app.get("/index/:url", (req, res) => {
   const url = req.params.url;
+  console.log(url);
   res.redirect(url ? url : "https://bitcoin-livestream.vercel.app");
   // res.redirect("https://bitcoin-livestream.vercel.app");
 });
