@@ -46,10 +46,13 @@
         const formData = new FormData();
         formData.append("image", file);
 
-        fetch("/upload", {
-          method: "POST",
-          body: formData,
-        })
+        fetch(
+          "https://ec2-43-199-70-185.ap-east-1.compute.amazonaws.com/upload",
+          {
+            method: "POST",
+            body: formData,
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
