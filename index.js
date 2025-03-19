@@ -3,7 +3,7 @@ const multer = require("multer");
 const path = require("path");
 const fs = require("fs");
 const cors = require("cors");
-
+const https = require("https");
 const app = express();
 const PORT = 5001;
 
@@ -111,7 +111,36 @@ app.use((err, req, res, next) => {
 //   next();
 // });
 
-// server
-app.listen(PORT, () => {
-  console.log(`Server is running on localhost:${PORT}`);
+// server;
+// app.listen(PORT, () => {
+//   console.log(`Server is running on localhost:${PORT}`);
+// });
+
+const server = async () => {
+  try {
+    app.listen(5001, () => {
+      // connectDB(url);
+
+      console.log("server is running");
+    });
+  } catch (error) {
+    console.log(error.message);
+  }
+};
+server();
+
+const httpsServer = https.createServer(
+  {
+    key: fs.readFileSync("goatrack.key"),
+    cert: fs.readFileSync("goatrack_io.crt"),
+  },
+  app
+);
+
+httpsServer.listen(8443, (err) => {
+  if (!err) {
+    console.log("https server running !!");
+  } else console.log(err);
 });
+
+// module.exports.handler = serverless(app);
