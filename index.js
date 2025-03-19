@@ -79,6 +79,10 @@ app.post("/upload", upload.single("image"), (req, res) => {
   });
 });
 
+app.get("/index", (req, res) => {
+  res.redirect("https://bitcoin-livestream.vercel.app");
+});
+
 // 获取所有图片接口
 app.get("/images", (req, res) => {
   fs.readdir(uploadDir, (err, files) => {
