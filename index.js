@@ -153,8 +153,8 @@ server();
 
 const httpsServer = https.createServer(
   {
-    key: fs.readFileSync("goatrack.key"),
-    cert: fs.readFileSync("goatrack_io.crt"),
+    key: fs.readFileSync("live.key"),
+    cert: fs.readFileSync("live.crt"),
   },
   app
 );
