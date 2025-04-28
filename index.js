@@ -13,6 +13,12 @@ const allowedOrigins = [
   "http://localhost:5001",
   "http://ec2-43-199-70-185.ap-east-1.compute.amazonaws.com",
   "https://ec2-43-199-70-185.ap-east-1.compute.amazonaws.com",
+  "http://ec2-43-199-230-173.ap-east-1.compute.amazonaws.com",
+  "https://ec2-43-199-230-173.ap-east-1.compute.amazonaws.com",
+  "https://ec2-43-199-230-173.ap-east-1.compute.amazonaws.com",
+  "http://www.lyxstream.live/",
+  "https://www.lyxstream.live/",
+  "lyxstream.live/",
   "https://bitcoin-livestream.vercel.app",
   "https://bitcoin-livestream.vercel.app/",
 ];
