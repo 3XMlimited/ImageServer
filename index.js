@@ -6,6 +6,7 @@ const cors = require("cors");
 const https = require("https");
 const app = express();
 const PORT = 5001;
+const path = require("path");
 
 // 增强版CORS配置
 const allowedOrigins = [
@@ -67,18 +68,6 @@ app.options("*", cors(corsOptions)); // 处理所有OPTIONS请求
 app.use(express.static("public"));
 app.use(express.json());
 
-// 上传接口
-app.post("/upload", upload.single("image"), (req, res) => {
-  if (!req.file)
-    return res.status(400).json({
-      error: "Image Format Error,Only access(.jpeg, .jpg, .png, .gif)",
-    });
-  res.json({
-    url: `/images/${req.file.filename}`,
-    message: "Upload Success!",
-  });
-});
-
 app.get("/index/:url", (req, res) => {
   const url = req.params.url;
   console.log(url);
@@ -92,6 +81,23 @@ app.get("/images", (req, res) => {
     if (err) return res.status(500).send("Server error");
     const imageUrls = files.map((file) => `/images/${file}`);
     res.json(imageUrls);
+  });
+});
+
+app.use(express.static("build"));
+app.get("*", function (req, res, next) {
+  res.sendFile(path.resolve(__dirname, "build", "index.html"));
+});
+
+// 上传接口
+app.post("/upload", upload.single("image"), (req, res) => {
+  if (!req.file)
+    return res.status(400).json({
+      error: "Image Format Error,Only access(.jpeg, .jpg, .png, .gif)",
+    });
+  res.json({
+    url: `/images/${req.file.filename}`,
+    message: "Upload Success!",
   });
 });
 
