@@ -6,7 +6,7 @@ const cors = require("cors");
 const https = require("https");
 const app = express();
 const PORT = 5001;
-const path = require("path");
+// const path = require("path");
 
 // 增强版CORS配置
 const allowedOrigins = [
