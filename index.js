@@ -17,6 +17,8 @@ const allowedOrigins = [
   "https://ec2-43-199-230-173.ap-east-1.compute.amazonaws.com",
   "http://www.lyxstream.live",
   "https://www.lyxstream.live",
+  "https://lyxstream.live",
+  "http://lyxstream.live",
   "lyxstream.live",
   "http://www.lyxstream.live",
   "https://bitcoin-livestream.vercel.app",
