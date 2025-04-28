@@ -15,10 +15,10 @@ const allowedOrigins = [
   "https://ec2-43-199-70-185.ap-east-1.compute.amazonaws.com",
   "http://ec2-43-199-230-173.ap-east-1.compute.amazonaws.com",
   "https://ec2-43-199-230-173.ap-east-1.compute.amazonaws.com",
-  "https://ec2-43-199-230-173.ap-east-1.compute.amazonaws.com",
   "http://www.lyxstream.live/",
   "https://www.lyxstream.live/",
   "lyxstream.live/",
+  "http://www.lyxstream.live/",
   "https://bitcoin-livestream.vercel.app",
   "https://bitcoin-livestream.vercel.app/",
 ];
@@ -166,3 +166,8 @@ httpsServer.listen(8443, (err) => {
 });
 
 // module.exports.handler = serverless(app);
+
+// ec2-43-199-230-173.ap-east-1.compute.amazonaws.com
+// 43.199.230.173
+
+// eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCIsImtpZCI6IjFkNmlmTUlzRlpTcU5GTzdkWDBkeTltanBqX21qX1NnZ084bng2ektQTHcifQ.eyJpc3MiOiJodHRwczovL2V4dGVybmFsYXV0b3NzbC5zZXJ2aWNlLnNwYWNlc2hpcC5jb20iLCJuYmYiOjE3NDU4MjM2NTAsImlhdCI6MTc0NTgyMzY1MCwiZXhwIjoxNzQ1OTEwMDUwLCJhdWQiOlsiZXh0ZXJuYWxhdXRvc3NsIl0sInNjb3BlIjpbImV4dGVybmFsYXV0b3NzbC5leHRlcm5hbGF1dG9zc2wiLCJleHRlcm5hbGF1dG9zc2wudXNlci1pbnRlZ3JhdGlvbi1jcmVhdGUiXSwiY2xpZW50X2lkIjoiZXh0ZXJuYWwtc3NsLWNsaWVudCIsInN1YiI6ImFiOTk2MjQyLTExOTQtNGJjMC05MGUzLTc4ZWRlYjUwNDk0MSJ9.OHLVA8ixhjNXaMMK7nzS89O7mtmNmzmXP-55LEKpyheV7H6ZTse6ffoZheG6lKrnqekAnDMcKm1zEME0rPXr4uydR1IFR53mqSUIoPPv3_x_5EZTxEqx2HkgJaScKj4sF3dAUjYAjBrQ2oVNjosSdeToNi8vjMYg_BdPE_Wx1XcXMWTULlV-TGe9o_4XHnhptrdirzEJ2xjoWUAHMofXY0uaAa592EUIS5UnbC8jBNU64MbD8ERZo-2ZrvszwyHiGvhvkpuaHTjTuoQJ1C77TVUkEGUhVgMgKKrWQLhZeSDjJ7BQBUrIncWBpFn_CL6bhTYS5xBESEPurqlG49kkkw
