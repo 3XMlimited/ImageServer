@@ -6,6 +6,7 @@ const cors = require("cors");
 const https = require("https");
 const app = express();
 const PORT = 5001;
+const axios = require("axios");
 // const path = require("path");
 
 // 增强版CORS配置
@@ -63,6 +64,34 @@ const fileFilter = (req, file, cb) => {
     : cb(new Error("Image Format Error,Only access(.jpeg, .jpg, .png, .gif)"));
 };
 
+// Get Bitcoin Price
+const getPrice = async (symbol) => {
+  // let coinId = '';
+  symbol = symbol.toUpperCase();
+  // console.log(symbol);
+  if (symbol === "BTC") {
+    coinId = "btc_usd";
+  } else {
+    if (symbol === "ETH") {
+      coinId = "eth_usd";
+    } else {
+      if (symbol === "SOL") {
+        coinId = "sol_usd";
+      }
+    }
+  }
+  const req = await axios.get(
+    `https://www.deribit.com/api/v2/public/get_index_price?index_name=${coinId}`
+  );
+  try {
+    const obj = req?.data;
+    // console.log(obj.result.index_price);
+    return obj.result.index_price.toFixed(0);
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 const upload = multer({
   storage,
   fileFilter,
@@ -90,6 +119,23 @@ app.get("/images", (req, res) => {
     const imageUrls = files.map((file) => `/images/${file}`);
     res.json(imageUrls);
   });
+});
+
+//  bitcoin price
+app.get("/api/price/:symbol", async (req, res) => {
+  try {
+    const symbol = req.params.symbol;
+    const price = await getPrice(symbol);
+    return res.json({ result: price });
+  } catch (error) {
+    return res.status(501).send("Not implemented yet");
+  }
+
+  // fs.readdir(uploadDir, (err, files) => {
+  //   if (err) return res.status(500).send("Server error");
+  //   const imageUrls = files.map((file) => `/images/${file}`);
+  //   res.json(imageUrls);
+  // });
 });
 
 app.use(express.static("build"));
