@@ -201,7 +201,7 @@ server();
 
 const httpsServer = https.createServer(
   {
-    key: fs.readFileSync("live_new.key"),
+    key: fs.readFileSync("live.key"),
     cert: fs.readFileSync("live.crt"),
   },
   app
